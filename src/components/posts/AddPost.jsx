@@ -1,24 +1,30 @@
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
 import { Avatar, Button, Card, Label, Spinner, TextInput } from "flowbite-react";
-import React from 'react';
+import React, { useContext } from 'react';
 import { useForm } from "react-hook-form";
-import { SiAffinityphoto } from "react-icons/si";
-import ValidationError from "../shared/ValidationError/ValidationError";
 import toast from "react-hot-toast";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { SiAffinityphoto } from "react-icons/si";
+import { UserContext } from "../context/UserContext/UserContext";
+import ValidationError from "../shared/ValidationError/ValidationError";
 function AddPost() {
-    let { register, handleSubmit, formState: { errors, isSubmitting, isValid } } = useForm()
-    let queryClient= useQueryClient()
-    let { mutate: handleAddPost, isPendings } = useMutation({
+    let {userData} = useContext(UserContext);
+    let { register, handleSubmit, reset, formState: { errors, isSubmitting, isValid } } = useForm()
+    let queryClient = useQueryClient()
+    let { mutate: handleAddPost, isPending } = useMutation({
         mutationFn: Add,
         onSuccess: () => {
             toast.success("Post created successfully 🎉");
             queryClient.invalidateQueries({
-                queryKey:["posts"]
+                queryKey: ["posts"]
             })
+            queryClient.invalidateQueries({
+                queryKey: ["user", userData?._id]
+            })
+            reset()
         },
         onError: () => {
-            toast.error("Something went wrong ❌");
+            toast.error("Post created failed ❌");
 
         }
 
@@ -55,9 +61,9 @@ function AddPost() {
                         <input type="file" id="file" hidden {...register("image")} />
                     </div>
                     <ValidationError error={errors.body} />
-                    <Button disabled={!isValid || isPendings} type="submit" className="cursor-pointer">
+                    <Button disabled={!isValid || isPending} type="submit" className="cursor-pointer">
                         {
-                            isPendings && <Spinner className="me-2" aria-label="loading" size="sm" light />
+                            isPending && <Spinner className="me-2" aria-label="loading" size="sm" light />
                         }
                         Add Post</Button>
                 </form>

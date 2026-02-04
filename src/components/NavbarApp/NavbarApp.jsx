@@ -59,7 +59,7 @@ function NavbarApp() {
               :
               <>
                 <DropdownItem as={Link} to={'profile'} >Profile</DropdownItem><DropdownDivider />
-                <DropdownItem as="button" onClick={handleSignOut}>Sign out</DropdownItem>
+                <DropdownItem  as="button" onClick={handleSignOut}>Sign out</DropdownItem>
 
               </>
 

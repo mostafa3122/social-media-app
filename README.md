@@ -33,8 +33,6 @@ This project is purely frontend-focused and does not use any database.
 
 ## ▶️ Getting Started
 
-## ▶️ Getting Started
-
 ```bash
 npm install
 npm run dev

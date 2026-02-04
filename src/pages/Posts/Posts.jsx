@@ -6,9 +6,7 @@ import AddPost from '../../components/posts/AddPost'
 
 function Posts() {
 
-    // const {token} = useContext(UserContext)
-    // console.log(token);
-   
+  
     return (
         <>
             <section className='max-w-xl mx-auto py-12'  >
@@ -16,7 +14,7 @@ function Posts() {
                  {/* Psta Form */}
                  <AddPost />
                 {/* Psta List */}
-                <PostsList />
+                <PostsList isProfile={false}/>
                </div>
             </section>
         </>
