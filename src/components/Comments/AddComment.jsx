@@ -35,13 +35,12 @@ export default function AddComment({ id }) {
         <>
             <Card >
                 <form onSubmit={handleSubmit(handleAddComment)} className="flex flex-col gap-4">
-
                     <div className="flex items-center  gap-2">
                         <Avatar className="cursor-pointer" alt="User settings" img={"https://linked-posts.routemisr.com/uploads/default-profile.png"} rounded />
-                        <TextInput id='content' type="text" placeholder=" Comment" className="grow-1" {...register("content", { required: "You must write any post" })} shadow />
+                        <TextInput id='content' type="text" placeholder=" Comment" className="grow-1" {...register("content", { required: "You must write any comment" })} shadow />
                     </div>
                     <ValidationError error={errors.body} />
-                    <Button disabled={!isValid || isSubmitting} type="submit" className="cursor-pointer">
+                    <Button disabled={!isValid || isPending} type="submit" className="cursor-pointer">
                         {
                             isPending && <Spinner className="me-2" aria-label="loading" size="sm" light />
                         }

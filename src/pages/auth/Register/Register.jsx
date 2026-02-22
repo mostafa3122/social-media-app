@@ -52,7 +52,7 @@ function Register() {
   async function onsubmit(values) {
     console.log(values);
     try {
-      let { data } = await axios.post(`${import.meta.env.VITE_BASE_URL}users/signup`, values)
+      let { data } = await axios.post(`${import.meta.env.VITE_BASE_URL}users/signup`, values,)
       console.log(data);
       setSuccess("User registered seccessfully")
       setApiError(null)
@@ -146,7 +146,9 @@ function Register() {
 
             </div>
             {/* ***************************** Submit Button  ***************************** */}
-            <Button className="cursor-pointer" disabled={!isValid} type="submit">{isSubmitting && <Spinner aria-label="Spinner button example" size="sm" light />} <span className="pl-3">Register</span>
+            <Button className="cursor-pointer" disabled={!isValid} type="submit">
+              {isSubmitting && <Spinner aria-label="Spinner button example" size="sm" light />} 
+              <span className="pl-3">Register</span>
             </Button>
           </form>
         </div>

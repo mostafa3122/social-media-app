@@ -45,3 +45,7 @@ body {
     @apply mx-auto px-8;
   }
 }
+
+.avatar *{
+@apply size-full object-cover
+}

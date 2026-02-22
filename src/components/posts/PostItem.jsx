@@ -6,7 +6,7 @@ import { PiShareFatBold } from 'react-icons/pi'
 import { Link } from 'react-router-dom'
 import AddComment from '../Comments/AddComment'
 import Comments from '../Comments/Comments'
-import DropDownMenue from '../shared/ValidationError/DropDownMenue'
+import DropDownMenue from '../shared/DropDownMenue'
 import { useForm } from 'react-hook-form'
 import { SiAffinityphoto } from 'react-icons/si'
 import ValidationError from '../shared/ValidationError/ValidationError'
@@ -47,7 +47,6 @@ export default function PostItem({ post, isHome }) {
         if (values.image[0]) {
             formData.append("image", values.image[0])
         }
-        console.log("posts", values);
         return await axios.put(`${import.meta.env.VITE_BASE_URL}posts/${post._id}`, formData, {
             headers: {
                 token: localStorage.getItem("token")
@@ -57,7 +56,6 @@ export default function PostItem({ post, isHome }) {
     // Delete Post
 
     async function deletePost() {
-
         return await axios.delete(`${import.meta.env.VITE_BASE_URL}posts/${post._id}`, {
             headers: {
                 token: localStorage.getItem("token")
@@ -67,7 +65,7 @@ export default function PostItem({ post, isHome }) {
     let { mutate: handleDeletePost } = useMutation({
         mutationFn: deletePost,
         onSuccess: () => {
-            toast.success("Post deleted successfully 🎉");
+            toast.success("Post deleted successfully 🗑️");
             queryClient.invalidateQueries({
                 queryKey: ["posts"]
             })
@@ -81,6 +79,7 @@ export default function PostItem({ post, isHome }) {
 
         }
     })
+
     return (
         <>
             <Card >
@@ -106,7 +105,7 @@ export default function PostItem({ post, isHome }) {
                         <form onSubmit={handleSubmit(handleEditPost)} className="flex flex-col gap-4 shadow-xl shadow-zinc-300 p-3 rounded-2xl" >
 
                             <div className="flex   items-center  gap-2">
-                                <Avatar className="cursor-pointer" alt="User settings" img={"https://linked-posts.routemisr.com/uploads/default-profile.png"} rounded />
+                                <Avatar className="cursor-pointer" alt="User settings" img={"https://flowbite.com/docs/images/people/profile-picture-5.jpg"} rounded />
                                 <TextInput type="text" defaultValue={post?.body} placeholder="Edit Your Post" className="grow-1" {...register("body", { required: "You must write any post" })} shadow />
                                 <label htmlFor="file">
                                     <SiAffinityphoto className="text-3xl cursor-pointer " /></label>

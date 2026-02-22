@@ -17,7 +17,7 @@ export default function PostsList({ isProfile }) {
         queryFn: getPosts,
         select: data => data.data
     })
-    console.log("postsss", data);
+ 
     async function getPosts() {
 
         let apiUrl = isProfile ?

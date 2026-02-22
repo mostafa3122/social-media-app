@@ -11,7 +11,7 @@ function UserContextProvider({ children }) {
         let token = localStorage.getItem("token")
         if (token) {
             setToken(token)
-            getUserData(token)
+           
         }
     }, [])
     useEffect(() => {

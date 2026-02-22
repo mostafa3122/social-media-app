@@ -36,10 +36,10 @@ function NavbarApp() {
           inline
           label={
             userData?
-            <Avatar className="cursor-pointer" alt="User settings" img={"https://linked-posts.routemisr.com/uploads/default-profile.png"} rounded />
+            <Avatar className="cursor-pointer" alt="User settings" img={userData.photo} rounded />
 
           :
-          <Avatar className="cursor-pointer" alt="User settings" img={"https://linked-posts.routemisr.com/uploads/default-profile.png"} rounded />
+          <Avatar className="cursor-pointer" alt="User settings" img={"https://flowbite.com/docs/images/people/profile-picture-5.jpg"} rounded />
 
           }
         >
